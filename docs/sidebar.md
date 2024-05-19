@@ -7,3 +7,4 @@
 - [Scalar](scalar.md)
 - [Marshaling](marshalling.md)
 - [XOF](xof.md)
+- [**Benchmarks**](https://dedis.github.io/kyber/#/benchmark)
