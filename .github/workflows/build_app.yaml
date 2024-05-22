@@ -20,7 +20,7 @@ jobs:
 
       - name: Install dependencies and build
         run: |
-          cd ./benchmark/benchmark-app/
+          cd ./docs/benchmark-app/
           npm install
           npm run build
 
@@ -28,4 +28,4 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./benchmark/benchmark-app/build
+          publish_dir: ./docs/benchmark-app/build
