@@ -14,9 +14,20 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    # Go to the  benchmark directory
+    - name: Print current directory
+      run: pwd
+
+    - name: List files in the directory
+      run: ls
+
     - name: Change directory
       run: cd benchmark/benchmark-app
+
+    - name: Print current directory
+      run: pwd
+
+    - name: List files in the directory
+      run: ls
 
     - name: Use Node.js 14.x
       uses: actions/setup-node@v2
