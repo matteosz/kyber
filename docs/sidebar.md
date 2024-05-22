@@ -8,4 +8,4 @@
 - [Marshaling](marshalling.md)
 - [XOF](xof.md)
 - **Benchmarks**
-- [Go to benchmarks](https://www.matteosuez.com/kyber/benchmarks)
+- [Go to benchmarks](https://www.matteosuez.com/kyber/benchmark)
