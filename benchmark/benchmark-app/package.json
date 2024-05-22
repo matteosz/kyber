@@ -46,5 +46,5 @@
   "devDependencies": {
     "gh-pages": "^6.1.1"
   },
-  "homepage": "https://dedis.github.io/kyber/#/benchmarks"
+  "homepage": "https://www.matteosuez.com/kyber/#/benchmarks"
 }
