@@ -14,14 +14,8 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Print current directory
-      run: pwd
-
-    - name: List files in the directory
-      run: ls
-
     - name: Change directory
-      run: cd benchmark/benchmark-app
+      run: cd ./benchmark/benchmark-app/
 
     - name: Print current directory
       run: pwd
