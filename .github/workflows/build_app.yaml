@@ -5,7 +5,7 @@ name: Build and Deploy App
 on:
   push:
     branches:
-      - main
+      - master
   
 jobs:
   build:
