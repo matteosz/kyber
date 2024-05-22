@@ -1,0 +1,29 @@
+# This workflow is triggered when pushing to the main branch, 
+# it builds the react app in benchmark and publishes it just using npm run deploy
+name: Build and Deploy App
+
+on:
+  push:
+    branches:
+      - main
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Use Node.js 14.x
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14.x'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build
+      run: npm run build
+
+    - name: Deploy
+      run: npm run deploy
