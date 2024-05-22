@@ -1,4 +1,4 @@
-name: Build and Deploy App
+name: Deploy React App to GitHub Pages
 
 on:
   push:
@@ -6,28 +6,26 @@ on:
       - master
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Set up Git user
-      run: |
-        git config --global user.email "${{ secrets.GIT_USER_EMAIL }}"
-        git config --global user.name "${{ secrets.GIT_USER_NAME }}"
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
 
-    - name: Use Node.js 14.x
-      uses: actions/setup-node@v2
-      with:
-        node-version: '14.x'
+      - name: Install dependencies and build
+        run: |
+          cd ./benchmark/benchmark-app/
+          npm install
+          npm run build
 
-    - name: Install dependencies
-      run: |
-        cd ./benchmark/benchmark-app/
-        npm install
-
-    - name: Deploy
-      run: |
-        cd ./benchmark/benchmark-app/
-        npm run deploy
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./benchmark/benchmark-app/build
