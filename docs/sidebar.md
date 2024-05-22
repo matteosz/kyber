@@ -7,4 +7,5 @@
 - [Scalar](scalar.md)
 - [Marshaling](marshalling.md)
 - [XOF](xof.md)
-- [**Benchmarks**](/benchmark)
+- **Benchmarks**
+- Go to [benchmarks](/benchmarks)
