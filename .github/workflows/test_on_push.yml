@@ -54,15 +54,11 @@ jobs:
       if: ${{ matrix.size == '32b' && matrix.os == 'ubuntu-latest'}}
       run: |
         GO_VERSION=${{ matrix.golang }}
-        apk add --no-cache --virtual .build-deps bash gcc musl-dev openssl go 
         wget -O go.tgz https://golang.org/dl/go$GO_VERSION.linux-386.tar.gz
-        tar -C /usr/local -xzf go.tgz 
-        cd /usr/local/go/src/ 
-        ./make.bash 
-        export PATH="/usr/local/go/bin:$PATH"
+        tar -C $HOME -xzf go.tgz 
+        export PATH="$HOME/go/bin:$PATH"
         export GOPATH=/opt/go/ 
         export PATH=$PATH:$GOPATH/bin 
-        apk del .build-deps 
       shell: alpine.sh {0}
 
     - name: getconf x86
