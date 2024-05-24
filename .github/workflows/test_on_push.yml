@@ -45,20 +45,11 @@ jobs:
       with:
         arch: x86
         packages: >
+          go
           make 
           git 
           gcc 
           musl-dev
-
-    - name: Install specific Go version on Alpine Linux
-      if: ${{ matrix.size == '32b' && matrix.os == 'ubuntu-latest'}}
-      run: |
-        GO_VERSION=${{ matrix.golang == '1.18' && '1.18.10' || '1.22.3' }}
-        wget -O go.tgz https://golang.org/dl/go$GO_VERSION.linux-386.tar.gz
-        tar -C ./ -xzf go.tgz 
-        export PATH="go/bin/go:$PATH"
-        go version
-      shell: alpine.sh --root {0}
 
     - name: getconf x86
       if: ${{ matrix.size == '32b' }}
@@ -68,6 +59,7 @@ jobs:
       shell: alpine.sh {0}
 
     - name: getconf x64
+      if: ${{ matrix.size == '64b' }}
       run: |
         getconf LONG_BIT
         go version
