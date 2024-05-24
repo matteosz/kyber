@@ -53,7 +53,7 @@ jobs:
     - name: Install specific Go version on Alpine Linux
       if: ${{ matrix.size == '32b' && matrix.os == 'ubuntu-latest'}}
       run: |
-        GO_VERSION=${{ matrix.golang == '1.18' ? '1.18.10' : '1.22.3'}}
+        GO_VERSION=${{ matrix.golang == '1.18' && '1.18.10' || '1.22.3'}}
         wget -O go.tgz https://golang.org/dl/go$GO_VERSION.linux-386.tar.gz
         tar -C $HOME -xzf go.tgz 
         export PATH="$HOME/go/bin:$PATH"
