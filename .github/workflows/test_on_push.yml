@@ -47,24 +47,18 @@ jobs:
           gcc 
           musl-dev
 
-    - name: Install Go on Alpine Linux
-      if: ${{ matrix.size == '32b' }}
-      run: |
-        GOVERSION=${{ matrix.golang == '1.21' && '1.21.10' || '1.22.3' }}
-        echo "Downloading Go $GOVERSION for 32-bit Linux"
-        wget -O go.tgz -nv https://go.dev/dl/go$GOVERSION.linux-386.tar.gz
-        tar -xzf go.tgz
-        export PATH=$PATH:$(pwd)/go/bin
-        go version
-      shell: alpine.sh {0}
-
     - name: Test without coverage (Windows, MacOS)
       if: ${{ matrix.os == 'macos-latest' || matrix.os == 'windows-latest' }}
       run: make test
 
     - name: Test without coverage (Ubuntu x86)
       if: ${{ matrix.size == '32b' }}
-      run: make test
+      run: |
+        GOVERSION=${{ matrix.golang == '1.21' && '1.21.10' || '1.22.3' }}
+        wget -O go.tgz -nv https://go.dev/dl/go$GOVERSION.linux-386.tar.gz
+        tar -xzf go.tgz
+        export PATH=$PATH:$(pwd)/go/bin
+        make test
       shell: alpine.sh {0}
 
     - name: Test with coverage
