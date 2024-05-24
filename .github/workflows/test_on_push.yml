@@ -55,9 +55,12 @@ jobs:
       if: ${{ matrix.size == '32b' }}
       run: |
         GOVERSION=${{ matrix.golang == '1.21' && '1.21.10' || '1.22.3' }}
+        cd ..
+        ls
         wget -O go.tgz -nv https://go.dev/dl/go$GOVERSION.linux-386.tar.gz
         tar -xzf go.tgz
         export PATH=$PATH:$(pwd)/go/bin
+        cd kyber
         make test
       shell: alpine.sh {0}
 
