@@ -55,11 +55,9 @@ jobs:
       run: |
         GO_VERSION=${{ matrix.golang == '1.18' && '1.18.10' || '1.22.3' }}
         wget -O go.tgz https://golang.org/dl/go$GO_VERSION.linux-386.tar.gz
+        tar -C ./ -xzf go.tgz 
         ls
-        tar -C /usr/local -xzf go.tgz 
-        cd /usr/local/go/src
-        ./make.bash
-        export PATH="/usr/local/go/bin:$PATH"
+        export PATH="go/bin:$PATH"
         export GOPATH=/opt/go/ 
         export PATH=$PATH:$GOPATH/bin
         go version
