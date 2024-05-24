@@ -55,9 +55,10 @@ jobs:
       run: |
         GO_VERSION=${{ matrix.golang }}
         wget https://golang.org/dl/go$GO_VERSION.linux-386.tar.gz
-        tar -C /usr/local -xzf go$GO_VERSION.linux-386.tar.gz
+        tar -C $HOME -xzf go$GO_VERSION.linux-386.tar.gz
         rm go$GO_VERSION.linux-386.tar.gz
-        export PATH=$PATH:/usr/local/go/bin
+        echo "export PATH=$PATH:$HOME/go/bin" >> $HOME/.bashrc
+        source $HOME/.bashrc
       shell: alpine.sh {0}
 
     - name: getconf x86
