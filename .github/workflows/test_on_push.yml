@@ -67,7 +67,7 @@ jobs:
       if: ${{ matrix.size == '32b' }}
       run: |
         getconf LONG_BIT
-        go version
+        $HOME/go/bin/go version
       shell: alpine.sh {0}
 
     - name: getconf x64
