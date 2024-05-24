@@ -57,7 +57,7 @@ jobs:
         wget -O go.tgz https://golang.org/dl/go$GO_VERSION.linux-386.tar.gz
         tar -C $HOME -xzf go.tgz 
         export PATH="$HOME/go/bin:$PATH"
-        export GOPATH=/opt/go/
+        export GOPATH=/opt/go
         export PATH=$PATH:$GOPATH/bin
         echo $PATH
         $HOME/go/bin/go version
