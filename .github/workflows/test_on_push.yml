@@ -52,7 +52,7 @@ jobs:
       run: |
         GOVERSION=${{ matrix.golang == '1.21' && '1.21.10' || '1.22.3' }}
         wget -nv https://go.dev/dl/go$GOVERSION.linux-386.tar.gz
-        tar xf go*
+        tar -xf go*
         export PATH=$PATH:$(pwd)/go/bin
         go version
       shell: alpine.sh {0}
