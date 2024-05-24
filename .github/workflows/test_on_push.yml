@@ -59,6 +59,8 @@ jobs:
         export PATH="$HOME/go/bin:$PATH"
         export GOPATH=/opt/go/ 
         export PATH=$PATH:$GOPATH/bin 
+        echo $PATH
+        go version
       shell: alpine.sh {0}
 
     - name: getconf x86
