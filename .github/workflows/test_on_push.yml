@@ -56,18 +56,18 @@ jobs:
         GO_VERSION=${{ matrix.golang == '1.18' && '1.18.10' || '1.22.3' }}
         wget -O go.tgz https://golang.org/dl/go$GO_VERSION.linux-386.tar.gz
         tar -C $HOME -xzf go.tgz 
-        export PATH="$HOME/go/bin:$PATH"
-        export GOPATH=/opt/go
-        export PATH=$PATH:$GOPATH/bin
+        echo "export PATH=\$HOME/go/bin:\$PATH" >> $HOME/.profile
+        echo "export GOPATH=/opt/go/" >> $HOME/.profile
+        echo "export PATH=\$PATH:\$GOPATH/bin" >> $HOME/.profile
+        source $HOME/.profile
         echo $PATH
-        $HOME/go/bin/go version
       shell: alpine.sh {0}
 
     - name: getconf x86
       if: ${{ matrix.size == '32b' }}
       run: |
         getconf LONG_BIT
-        $HOME/go/bin/go version
+        go version
       shell: alpine.sh {0}
 
     - name: getconf x64
