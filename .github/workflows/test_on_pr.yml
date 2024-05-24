@@ -51,10 +51,11 @@ jobs:
     - name: Matrix is ${{matrix.os}} / ${{matrix.size}} - Go is ${{matrix.golang}}
       run: date
 
-    - name: Set up Go ^${{matrix.golang}}
+    - name: Set up Go ${{matrix.golang}}
       uses: actions/setup-go@v5
       with:
-        go-version: ^${{matrix.golang}}
+        go-version: ${{matrix.golang}}
+        check-latest: false
 
     - name: Check out code into the Go module directory
       uses: actions/checkout@v4
