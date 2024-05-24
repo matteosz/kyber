@@ -10,7 +10,7 @@ jobs:
       matrix:
         os: [windows-latest, ubuntu-latest, macos-latest]
         size: ['64b', '32b']
-        golang: ['1.18', '1.22']
+        golang: ['1.21', '1.22']
         exclude:
           - os: windows-latest
             size: '32b'
@@ -50,10 +50,11 @@ jobs:
     - name: Install Go on Alpine Linux
       if: ${{ matrix.size == '32b' }}
       run: |
-        GO_VERSION=${{ matrix.golang == '1.18' && '1.18.10' || '1.22.3' }}
-        wget -nv https://go.dev/dl/go$GO_VERSION.linux-386.tar.gz
+        GOVERSION=${{ matrix.golang == '1.21' && '1.21.10' || '1.22.3' }}
+        wget -nv https://go.dev/dl/go$GOVERSION.linux-386.tar.gz
         tar xf go*
         export PATH=$PATH:$(pwd)/go/bin
+        go version
       shell: alpine.sh {0}
 
     - name: Test without coverage (Windows, MacOS)
